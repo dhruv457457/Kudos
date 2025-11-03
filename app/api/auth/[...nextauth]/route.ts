@@ -1,4 +1,4 @@
-import NextAuth from 'next-auth';
+import NextAuth, { type SessionStrategy } from 'next-auth'; // 1. Import SessionStrategy
 import GoogleProvider from 'next-auth/providers/google';
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import { db } from '@/lib/db'; // Your Prisma client
@@ -20,7 +20,7 @@ export const authOptions = {
 
   // 3. Define the session strategy
   session: {
-    strategy: 'jwt', // Use JSON Web Tokens for session management
+    strategy: 'jwt' as SessionStrategy, // 2. Add "as SessionStrategy" here
   },
 
   // 4. Callbacks are custom functions to control auth behavior
